@@ -1,0 +1,11 @@
+when docker program starts, it creates a machine called "default" inside which the containers can be created, images stored etc.
+
+docker-machine create <name> - creates a machine with the name
+
+docker-machine start <name> starts the machine with that name
+
+docker-machine stop <name> stops the machine with that name
+
+docker-machine env <name> - outputs the env variables for this machine
+
+docker-machine ssh <name> - logins to the machine

@@ -1,0 +1,128 @@
+Docker Notes:
+-------------
+docker search <name>
+Search for images in the registry:  https://registry.hub.docker.com/
+example: docker search redis
+
+This lists all images available in registry.
+-------------
+docker run <options> <image> launches a new container with this image.
+Options: 
+--rm removes container after it exits
+-d: as a background process
+-ti terminal interactive
+-memory  <max allowed memory)
+-cpu-shares compared to other containers
+-cpu-quota hard limit of cpu time
+-rm remove container after it exits
+-p <port_inside>:<port_outside> :expose ports from the inside for listening:For the outside. 
+  example: -p 45678:45678  --> listens to connections on 45678 on te inside. Connections from outside can connect to 45678
+           -p 45678 --> Listens to connections on this port from the inside. The senders may send the data on the available port from the outside that can be determined by docker port <container_name>
+-v <localdrive>:<shared_folder_in_container>  Persistent location on the local drive that is mapped as shared_folder_in_container in container. The data stored here in this shared location is still accessible even after the container is exited.
+		For sharing files, the file should exist before the container is started, else the command assumes that it is a folder.
+
+-v /shared-data on one container : creates a shared container.
+-volumes-from /shared-data 
+displays the full id -- a lengthy string
+-restart=always if the container dies, restart it immediately
+-------------
+docker ps
+process status of the containers that are currently running.
+Displays container ID (hostname - a short version of container id), image, ports used etc.
+Options:
+-a all containers (including stopped ones)
+-l last stopped container
+-------------
+docker inspect <containerID|Name>
+displays info on said container
+-------------
+docker logs <container id>
+shows logs
+
+--------------------
+docker images
+lists the images in the docker container
+Repository, Tag, imageID are displayed
+--------------------------
+
+docker commit <containerID> <new_name>
+Creates a new image with name <new_name>
+ output image id
+------------------------------
+
+Docker tag <imageId> <name>
+Assigns a specific name to the image. If not, docker makesup one
+-----------------------------
+
+docker attach <name>
+attaches the terminal to that process. Comparable to screen -r <id> of linux
+-----------------------------------
+Ctrl+ P / Ctrl + Q
+Exiting/ logging out of a container but to leave it running
+-------------------------------------
+docker exec
+starts another process in the container
+-------------------------------------
+docker kill <name>
+kills the container
+-------------------------------------
+docker rm <name>
+removes the container
+-------------------------------------
+docker-machine ip
+outputs the ip of the docker container
+-------------------------------------
+docker port <name> <tcp/udp>
+outputs the listening ports from the inside and the port for outside
+0.0.0.0 -> Any server in the world can connect on the outside port
+tcp is default. Optional
+-------------------------------------
+docker rmi <image_id>
+removes docker image from the system
+-------------------------------------
+docker build -t <name> .
+builds an image from dockerfile the dockerfile is located in the current dir.
+-------------------------------------
+Bridges
+brctl -bridge control tool helps know the different bridges in docker
+
+bridges - corresponds to networks
+turn off for Production --net=host to the docker run cmd
+-------------------------------------
+sudo iptables -n -L -t nat
+-L list
+-t tables
+
+prints data equivalent to netstat
+
+When containers with port forwarding are created (-p 1234:1234), it gets listed here
+-------------------------------------
+
+Process Zero = init  :parent of all process in Linux
+
+Docker containers starts with init. init process exits, container vanishes
+Any detached /abandoned process are clean by init
+-------------------------------------
+cgroups = control groups of Linux. Cant see across. Partitions , process within that group can see each other -isolation
+
+-------------------------------------
+
+Mounting directories:
+sudo mount -o bind <src_dir> <target_dir>
+Files from src dir will be visible in target_dir. The originally present files in target dir will be hidden till the unmount if the src_diroccurs.
+
+df -a : displays all mounts
+
+sudo umount <target_dir> :unmounts the mounted fs.
+
+hostfilesystem is mounted on guest fs. not the otherway round.
+
+-------------------------------------
+docker save -o <name of zip> <image:tag>
+
+-o name of output zip
+-------------------------------------
+docker load -i <name of zip>
+extracts the images from this zip
+
+-------------------------------------

@@ -1,0 +1,160 @@
+Kubernetes
+
+Docker: platform for creating immutable images. run containers.
+Cons: Good for small systems. Not Enterprise scale.
+
+
+Kubernetes: Containers + orchestration through service discovery
+from Google project: Borg - minimal version of Borg
+
+
+Kubernetes Master : K8S config service: takes in the configuration / workload definition (yaml/json) via API / UI / kubectl
+talks to workers / nodes via kublets running on them.
+nodes will pull the images from dockerhub or private docker registry
+
+
+Minikube: Small one node cluster with k8s 1.3
+
+K8s Multi-node Cluster: prod env
+
+Google container engine - Google compute engine
+-----------------------------------------------------
+Terminology:
+node: host
+container: unit of packaging
+pod: unit of deployment: homogenous containers. vms that bring up multiple containers and make them available as one. Containers that need to be together can be created as a pod.
+contains one processid, network namespace
+Replication Controller: ensures desired state of scalability and availability. ex: 3 pods always running
+Labels: kv pairs. The keys that define the services and objects running in kubernetes containers
+Services: collection of pods exposed as an endpoint
+-----------------------------------------------------
+
+Kubernetes Master components: 
+API Server exposes a set of APIs for operations available
+Scheduler: schedules pods across nodes that meets a particular criteria. 
+Controller: Co-ordination & health of cluster.
+etcd - lightweight, distributed key-value db. Stores cluster state.
+
+kubectl - CLI that consumes APIs from API Server. - Go lang based
+Kubernetes dashboard also uses the same API Server. All requests pass through this
+
+Kubernetes Master talks to nodes. 
+k8S master doesn't host any pods
+-----------------------------------------------------
+K8S Nodes / slave /Minions
+Main components:
+
+Contain kubeproxy - maintains network config. Manipulates ip tables on each host for pod to pod, node to node comm.
+kubelet - agent that talks to API (master). reports health and state
+docker - engine that creates containers
+
+kubelet + docker = supervisord
+
+fluentd - log management for central logging
+
+Addons: DNS management, UI - help dev
+
+-----------------------------------------------------
+Starting minikube:
+
+open cmd prompt, navigate to the location which contains minikube exe.
+-----------------------------------------------------
+minikube start --vm-driver=virtualbox
+
+this starts a small kubernetes orchestrated cluster. 
+
+These are visible in virtualbox
+
+Also configures kubectl (client) to minikube
+
+-----------------------------------------------------
+
+minikube status
+
+prints running / stopped status of the container
+-----------------------------------------------------
+minikube dashboard
+
+pulls up a dashboard showing info on the cluster
+-----------------------------------------------------
+point docker cli to minikube:
+Execute the following:
+1. minikube docker-env
+
+This outputs a bunch of variables.
+Execute the last line: Since the delimiters have a problem in windows 10, add delims=ctrl+L to the command.
+@FOR /f "tokens=* delims=^L" %i IN ('minikube docker-env') DO %i
+
+Then execute docker commands on terminal
+-----------------------------------------------------
+Terminology:
+node: host
+
+container: unit of packaging
+
+pod: unit of deployment: homogenous containers. vms that bring up multiple containers and make them available as one. Containers that need to be together can be created as a pod.
+
+Replication Controller: ensures desired state of scalability and availability. ex: 3 pods always running
+
+Labels: kv pairs. The keys that define the services and objects running in kubernetes containers
+
+Services: collection of pods exposed as an endpoint
+
+etcd - distributed kv pair db
+-----------------------------------------------------
+kubectl version
+prints client and server versions of K8S
+-----------------------------------------------------
+kubectl cluster-info (dump)
+prints out the info on the master and nodes
+dump: option presents a verbose output of all the config
+-----------------------------------------------------
+kubectl get nodes
+prints details on the running node
+-----------------------------------------------------
+kubectl get cs (component status)
+prints status of different components
+-----------------------------------------------------
+kubectl config use-context <name>
+switches the context to the different setup
+-----------------------------------------------------
+kubectl run my-web --image=nginx --port=80
+Creates a deployment with name my-web
+
+similar to docker run command
+-----------------------------------------------------
+kubectl get deployments
+
+prints the deployment data: desired number of pods, current number, available ones etc.
+-----------------------------------------------------
+kubectl get pods
+
+prints the details of the pods
+-----------------------------------------------------
+kubectl expose deployment my-web --target-port=80 --type=NodePort
+creates a service that is accessible on port 80 internally
+
+types:
+ClusterIP: service is available only internally with in the pod
+NodePort: exposes the service at Node's IP. ClusterIP service is auto created. NodePort will route to the ClusterIP service internally. Meant for outside contact.
+LoadBalancer: exposes the service on the cloud provider's LB. NodePort and ClusterIP services are auto created.
+More: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services---service-types
+-----------------------------------------------------
+kubectl get svc
+prints the services with name, ip, port (Internal:external) along with protocol
+-----------------------------------------------------
+minikube ip
+displays the ip of the k8s server
+-----------------------------------------------------
+kubectl describe svc <name>
+prints the info on the service like the clusterIP, namespace, labels, publish type, endpoints etc.
+-----------------------------------------------------
+kubectl proxy
+starts to serve a webapp on a url upon hitting which a list of APIs are returned.
+-----------------------------------------------------
+
+
+
+
+
+
