@@ -140,7 +140,7 @@ NodePort: exposes the service at Node's IP. ClusterIP service is auto created. N
 LoadBalancer: exposes the service on the cloud provider's LB. NodePort and ClusterIP services are auto created.
 More: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services---service-types
 -----------------------------------------------------
-kubectl get svc
+kubectl get svc / kubectl get services
 prints the services with name, ip, port (Internal:external) along with protocol
 -----------------------------------------------------
 minikube ip
@@ -152,8 +152,6 @@ prints the info on the service like the clusterIP, namespace, labels, publish ty
 kubectl proxy
 starts to serve a webapp on a url upon hitting which a list of APIs are returned.
 -----------------------------------------------------
-
-
 
 
 
