@@ -152,6 +152,39 @@ prints the info on the service like the clusterIP, namespace, labels, publish ty
 kubectl proxy
 starts to serve a webapp on a url upon hitting which a list of APIs are returned.
 -----------------------------------------------------
+heapster - container essential for kubernetes master. Scheduling is disabled on K8S master node as itdoesnt host containers.
+-----------------------------------------------------
+Service is bound to the pod definition -- selector definition in service should match the  labels in pod definition.
+----------------------------------------------------
+kubectl create -f <yaml file with pod def>
+creates a pod for that definiton
+-----------------------------------------------------
+kubectl delete pod <pod_name>
+deletes the pod
+----------------------------------------------------
+kubectl delete svc <service_name>
+deletes the service with this name
+----------------------------------------------------
+kubectl exec -it <pod> /bin/bash
+to execute commands on the running container. Similar to docker exec.
+----------------------------------------------------
+Any of the nodes could be hosting the application. kube proxy will route them to the appropriate node properly. To know which nodes actually running the application execute kubectl describe pod
+--------------------------------------------------- 
+kubectl describe pod <name>
+describes the pod of given name
+---------------------------------------------------
+REplication Controller -- number of pods
+kubectl get rc
+
+prints the data on Replication controller. Number desired, current number of pods age etc.
+---------------------------------------------------
+kubectl scale rc web replicas=10
+scale the pods as desired outside of the cofig from ReplicationController definition
+
+ˆuseful when some pods need to be scaled temporarily
+---------------------------------------------------
+
+
 
 
 
