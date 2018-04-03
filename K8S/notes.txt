@@ -196,8 +196,46 @@ Replica sets are next gen RCs, they use Annotations and querying to associate wi
 Can make the query very granular
 
 ---------------------------------------------------
+Kubernetes Volume Types
+
+Host based volumes: 
+a. EmptyDir: temp, created when pod is scheduled. Ephemeral.
+b. HostPath: Exposes on of the existent dirs to K8s. persistent.
+
+Block Storage-based volumes:
+like disks created on GCE. These disks are persistent and the data is not deleted even when the pod is deleted. However, they are not distributed, multiple pods cant access it at the same time.
+
+Prod: storageClass recommended 
+
+PersistentVolume (PV): network storage created by admin, governed by a quota.
+
+PersistentVolumeClaim (PVC): Claims made on the PV by users. PV quota could be 5G. Claim could be for 1G.
+
+StorageClass: drivers/interfaces. supported storage profiles offered by admins. example: nfs. 
+Mentioned in the PersistentVolume object definition.
+
+Claim needn't know the StorageClass. Only needs to know the max available capacity.
 
 
+StatefulSets / Pecsets - stateful, persistent
 
+---------------------------------------------------
+Deployments:
+Defines the state of application with config like: number of replicas, versions needed etc.
+Create, update, perform rolling updates, rollback, pause/resume a deployment
 
+kubectl create -f <file> --record
+creates a deployment
 
+kubectl get deployments
+prints the deployments
+
+kubectl set image deployment/<name> <image>:<image:newVersion>
+updates the image to be deployed
+
+where is this data on new version stored as the file has a different version. etcd?
+
+kubectl rollout status deployment/<name>
+prints status of roll out
+
+---------------------------------------------------
