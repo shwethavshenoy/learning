@@ -181,9 +181,21 @@ prints the data on Replication controller. Number desired, current number of pod
 kubectl scale rc web replicas=10
 scale the pods as desired outside of the cofig from ReplicationController definition
 
-ˆuseful when some pods need to be scaled temporarily
+**useful when some pods need to be scaled temporarily
 ---------------------------------------------------
+kubectl expose pod <name> --type=NodePort
+exposes the said pod to the outside world. Creates a service in the background.
 
+Another way would be to define a service.
+---------------------------------------------------
+kubectl describe svc / pod/ node <name> 
+describes the said object.
+---------------------------------------------------
+Replication Controllers use labels and selectors to associate RC with pods
+Replica sets are next gen RCs, they use Annotations and querying to associate with pods.
+Can make the query very granular
+
+---------------------------------------------------
 
 
 
