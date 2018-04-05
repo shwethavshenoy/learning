@@ -1,4 +1,6 @@
 Docker Notes:
+Provides container platform
+Equivalents include: RedHat Openshift, Cisco conftiner platform, Google's let me contain that for you
 -------------
 docker search <name>
 Search for images in the registry:  https://registry.hub.docker.com/
