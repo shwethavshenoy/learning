@@ -64,5 +64,14 @@ Has a REST API for accessing data on share.
 
 -------------------------------------------------------------------------------------------
 
+Definitions:
+
+Azure Region: Collection of DCs
+
+Not all services, instance services are available in all regions
+---------------------------------------------------------------------------
+Resource Group: Top level Container for resources
+---------------------------------------------------------------------------
+
 
 
