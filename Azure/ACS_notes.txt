@@ -1,4 +1,4 @@
-ACS makes deploying containers on Azure easy.
+ACS makes deploying containers on Azure easy. - Containers as a service
 ------------------------------------------------------------------------------
 Orchestration options OOTB: Docker Swarm , DataCenter OS. -- choosen during container creation.
 ------------------------------------------------------------------------------
@@ -13,6 +13,11 @@ docker -H 127.0.0.1:22375 ps -a
 Executes the docker commands on the said host (via port-forwarding) 
 
 
-Orchestration: DC/OS
+Orchestration: DC/OS - Also requires multiple other packages to be installed apart from the orchestration tools
 Port forward port 80 from localhost to 127.0.0.1:80( acs) with SSH
+
+marathon lb (from mesos) is used behind ACS lb
+probe: pool service behind the lb in mesos. Load balancer rules also need to be setup
+------------------------------------------------------------------------------
+Network Security Group also need to allow the port
 ------------------------------------------------------------------------------
