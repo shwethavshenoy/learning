@@ -1,0 +1,18 @@
+ACS makes deploying containers on Azure easy.
+------------------------------------------------------------------------------
+Orchestration options OOTB: Docker Swarm , DataCenter OS. -- choosen during container creation.
+------------------------------------------------------------------------------
+
+ACS on a remote machine can be reached via dockerCLI running locally. putty may also be configured to for port forwarding. 
+Orchestration: Swarm:
+
+127.0.0.1:2375 (docker's port)
+docker command needs to include the Host and the putty should be connected to acs
+22375: port frowarded to 2375 on acs
+docker -H 127.0.0.1:22375 ps -a
+Executes the docker commands on the said host (via port-forwarding) 
+
+
+Orchestration: DC/OS
+Port forward port 80 from localhost to 127.0.0.1:80( acs) with SSH
+------------------------------------------------------------------------------

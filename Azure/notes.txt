@@ -15,7 +15,7 @@ Types of Azure storage services:
 example: large multimedia objects, like images, text files, videos etc.
 3 types of blobs offered in Azure:
 a. Block blobs: Collection of individual blocks with uuid. 
-Optimised for streaming and storing cloud objects.
+Optimised for streaming and storing cloud objects like video, audio and backup files
 
 b. Appended Blobs:
 Optimised blobsUsage: logging - append data only to the end of the blob.
@@ -25,8 +25,7 @@ Compilation of pages. Random read write ops
 
 The storage account has 2 perf tiers:
 standard perf tier - store tables,queues, files, blobs and Azure vm disks
-
-Premium perf tier: Supports only Azure vms
+Premium perf tier: Supports only Azure vms - Disk storage
 
 Blob storage:
 -------------
@@ -34,10 +33,10 @@ Also available as a specialized account
 
 
 Redundancy:
-Zone redundant - 3 replicas - the in the same DC or split into 2 dcs in the same zone.
-Locally redundant - 3 replications with in same DC.
-Geo-redundant - default: 6 copies
-Read-access geo-redundant storage - copy in a secondary region
+1. Locally redundant - 3 replications with in same DC.
+2. Zone redundant - 3 replicas - the in the same DC or split into 2-3 dcs in the same zone. For Block blobs only. Option available only during Storage account creation.
+3. Geo-redundant - default: 6 copies - 3 in primary , 3 in secondary
+4. Read-access geo-redundant storage - Read acccess to data in secondary region. Useful for Analysts to do reporting
 
 storage container to be created inside a blob storage account
 
@@ -72,6 +71,23 @@ Not all services, instance services are available in all regions
 ---------------------------------------------------------------------------
 Resource Group: Top level Container for resources
 ---------------------------------------------------------------------------
+Azure Deployment managers:
+Service management: Classic mode - Azure v1
+Resource Manager: Latest recommended
+---------------------------------------------------------------------------
+Connecting to Linux VMS
+SSH, Authentication via keys, Remote Desktop
 
+Connecting to Windows
+Remote Desktop
 
+These should allowed in the Network Security Group
+---------------------------------------------------------------------------
+
+Host caching
+Good for random I/objects
+Read only: Write through - stored on disk & RAM
+
+Read/Write: write-back
+---------------------------------------------------------------
 
