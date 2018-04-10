@@ -21,3 +21,6 @@ probe: pool service behind the lb in mesos. Load balancer rules also need to be 
 ------------------------------------------------------------------------------
 Network Security Group also need to allow the port
 ------------------------------------------------------------------------------
+docker engine bundles specific stuff into itself to be able to talk to containerson windows /Linux.
+
+
