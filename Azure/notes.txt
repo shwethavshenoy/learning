@@ -91,3 +91,5 @@ Read only: Write through - stored on disk & RAM
 Read/Write: write-back
 ---------------------------------------------------------------
 
+Site-to-Site vs point-to-site vpn ?
+

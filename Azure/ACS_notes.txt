@@ -22,5 +22,7 @@ probe: pool service behind the lb in mesos. Load balancer rules also need to be 
 Network Security Group also need to allow the port
 ------------------------------------------------------------------------------
 docker engine bundles specific stuff into itself to be able to talk to containerson windows /Linux.
-
-
+------------------------------------------------------------------------------
+Availability set offers 99.5% SLA - 2 vms atleast in a single availability set
+Premium Storeage 99.9% SLA with Single VMs
+------------------------------------------------------------------------------
