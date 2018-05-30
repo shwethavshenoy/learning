@@ -349,6 +349,41 @@ opens a tunnel into k8s cluster
 Objects can be created by CURL command as well by hitting the API server directly instead of kubectl (that also internally makes calls to the API server)
 ---------------------------------------------------
 
+ConfigMaps - K8S Objects for injecting containers with config data. Holds KV pairs. container agnostic. Can also hold config files itself
+First class citizens. No dynamic changes allowed. Any change to configmap needs a redeploy of the pod
+
+Populates values of env-vaiables/config files in a volume, set cmd-line args in a container
+
+env -variable setting: Refered to in other objects by a configMapKeyRef section in the spec/Containers/env/valuefrom
+
+configMaps can also be created from files: kubectl create configmap example-redis-config --from-file=redis-config
+---------------------------------------------------
+Secrets: store senstive data like passwords, tokens,keys, size limited, access restricted to only the pod that requires it (stored in tempfs), registerd with k8s master, communication between k8s API server and node is through SSL/TLS, 
+
+Can also be created via a yaml file
+
+kubectl create secret generic dbsecret --from-file=./username.txt --from-file=./password.txt ....
+creates secret named "dbsecret"
+
+stores the data in Base64 encoded text. Not encrypted
+
+Can also be injected as env variables inject under: secretKeyRef 
+
+API server stores secrets in plain text
+When etcd cluster is replicated, secrets are sent in plain text
+
+---------------------------------------------------
+
+Ingress - Logical controller since k8s 1.2
+
+external urls - decouples the nodeport from the url. So, external url will remain same inspite of underlying url change
+
+makes wiring nodePorts to LBs easier.
+external LBs can be easily configured.
+SSL termination
+
+
+
 
 
 
