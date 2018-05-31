@@ -382,7 +382,7 @@ makes wiring nodePorts to LBs easier.
 external LBs can be easily configured.
 SSL termination
 
-
+ special deamon thread listens for requests at /ingress on the API server to track changes to the ingress
 
 
 
