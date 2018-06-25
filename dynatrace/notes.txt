@@ -10,7 +10,7 @@ DT Cluster: 3 nodes
 WebUI & Control services - query from UI, Analytics services, cassandra NoSQL services, Nginx, Agent security services   -- each nodes
 
 Cluster mgmt console -- only DT admins
-Mission control monitoring -- Dynatrace folks can view the setup etc.
+Mission control monitoring -- Dynatrace folks can view the setup etc. Access can be revoked on request. MCS is still applicable.
 
 
 Agents use 8443 https to transmit data
@@ -20,7 +20,7 @@ purepaths - 10days   --- disk storage
 
 Timeseries: CPU, memory, processtime, failure rate
 1 min intervals -14 d
-5min - 28 d
+5min - 28 d+
 1hr - 400 d
 1 day - 5 yrs
 
@@ -34,5 +34,5 @@ heartbeat data - usage for billing, health stats, heardware utilization, CPU, ev
 OneAgent updates are optional - 4 week updates - restart required! valid for one year
 DT servers have audit logs to see user logins
 
-
+Data retention - 35 days default - configurable
 
