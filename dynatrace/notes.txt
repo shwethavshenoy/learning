@@ -45,5 +45,23 @@ Agentless RUM requires SG to push data to the DT. Since there is no agent in the
 
 OneAgents are aware of all SGs. Firewall needs to be configured to ensure that the agent connects to desired SGs.
 
+Licensing - criteria: 
+full stack - depends on host memory 
+Pass - only processtime
+Infra only- only OS instance
 
+
+OneAgent - package with multiple components to monitor multiple pieces of code like java, .net, js etc.
+One piece to monitor CPU usage by multiple components
+One piece for network - ports, package sampling
+One piece for communication to dt custer
+One piece for log monitoring - updated on demand only when they are accessed on the server, the oneAgent send them.  Logs analytics premium sends them actively and stored on the DT servers
+One piece for disk
+
+hot placement of the sensors. - instrumentation - wrappers on the methods
+One Agent SDK for C, Ruby - the customer has to instrument it on their own.
+
+Network monitoring component of oneAgent helps build the smartscape
+
+Paas agents dont monitor network and disks
 
