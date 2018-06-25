@@ -27,3 +27,12 @@ Timeseries: CPU, memory, processtime, failure rate
 Real user mgmt - Elasticsearch store : No. of user clicks etc.
 sessions - 30d
 Waterfall - 10d - first resource loaded on UI
+
+Dynatrace clusters sent heartbeat messages to DT mission control . Updates are pushed to mission control, clusters pull the updates from MC.
+heartbeat data - usage for billing, health stats, heardware utilization, CPU, events like updates, server restarts, removed nodes etc.
+
+OneAgent updates are optional - 4 week updates - restart required! valid for one year
+DT servers have audit logs to see user logins
+
+
+
