@@ -10,7 +10,7 @@ DT Cluster: 3 nodes
 WebUI & Control services - query from UI, Analytics services, cassandra NoSQL services, Nginx, Agent security services   -- each nodes
 
 Cluster mgmt console -- only DT admins
-Mission control monitoring -- Dynatrace folks can view the setup etc. Access can be revoked on request. MCS is still applicable.
+Mission control monitoring -- Dynatrace folks can view the setup etc. Access can be revoked on request. Reactive support is still applicable, but not proactive support.
 
 
 Agents use 8443 https to transmit data
@@ -35,4 +35,15 @@ OneAgent updates are optional - 4 week updates - restart required! valid for one
 DT servers have audit logs to see user logins
 
 Data retention - 35 days default - configurable
+
+The oneAgent is also installed on the DT cluster itself, So that MC can view the health stats of the DT cluster.
+
+Security Gateway: Sits in front of the DT cluster. all OneAgents connect to the SG to talk to DT cluster. No need to open firewall to multiple agents.
+70% reduction in network traffic.
+
+Agentless RUM requires SG to push data to the DT. Since there is no agent in the browser, the data cant be pushed to the DT server/cluster.
+
+OneAgents are aware of all SGs. Firewall needs to be configured to ensure that the agent connects to desired SGs.
+
+
 
