@@ -1,3 +1,29 @@
 Dynatrace
 
 APM with proactive , reactive support.
+synthetic monitoring - loading of pages - licensed
+Real user monitoring - not used GDPR
+
+
+Architecture:
+DT Cluster: 3 nodes
+WebUI & Control services - query from UI, Analytics services, cassandra NoSQL services, Nginx, Agent security services   -- each nodes
+
+Cluster mgmt console -- only DT admins
+Mission control monitoring -- Dynatrace folks can view the setup etc.
+
+
+Agents use 8443 https to transmit data
+
+Configurable:
+purepaths - 10days   --- disk storage
+
+Timeseries: CPU, memory, processtime, failure rate
+1 min intervals -14 d
+5min - 28 d
+1hr - 400 d
+1 day - 5 yrs
+
+Real user mgmt - Elasticsearch store : No. of user clicks etc.
+sessions - 30d
+Waterfall - 10d - first resource loaded on UI
