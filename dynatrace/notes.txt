@@ -65,3 +65,10 @@ Network monitoring component of oneAgent helps build the smartscape
 
 Paas agents dont monitor network and disks
 
+
+EasyTravel - properties to change: https://community.dynatrace.com/community/display/DL/Demo+Applications+-+easyTravel#DemoApplications-easyTravel-Advancedtopics
+
+Definitions:
+Host: vm / physical machine
+process: any process that shows up in task manager
+Services: logical unit / endpoint that waits for methods to be called and returns a response
