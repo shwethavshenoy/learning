@@ -69,6 +69,13 @@ Paas agents dont monitor network and disks
 EasyTravel - properties to change: https://community.dynatrace.com/community/display/DL/Demo+Applications+-+easyTravel#DemoApplications-easyTravel-Advancedtopics
 
 Definitions:
-Host: vm / physical machine
+Host: anyting that is running a full stack Agent runs, Diego cell in SCP, pod in k8s, vm etc.
 process: any process that shows up in task manager
 Services: logical unit / endpoint that waits for methods to be called and returns a response
+-----------------------------------------------------------------------------------------------------------------------------
+
+Day 2:
+
+Processes: Only important (deep injectable ones) are shown in the preview. More can be found in All processes of hosts view.
+Process group: Group of processes that run the same code accross hosts, Cannot change with deployment. Used to configure all of the processes at once.
+
