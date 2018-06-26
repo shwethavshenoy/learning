@@ -87,9 +87,9 @@ Full stack - bosh addon will add the agent on CF which will in turn inject itsel
 
 
 Azure setup:
-Setting up Paas agent on Azure: Azure > follow the instructions
+Setting up Paas agent on Azure: DT portal > Azure > follow the instructions. This will not inject itself into the vms
 
 Setting up Dynatrace agent in the Azure vms: Generate a token for an environment, go to azure and this app setting. and download and install dt extension. Good to go.
 Doesnt collect cpu level data as this is not a full stack agent.
-
 These agents are disconnected and cannot see eachother.
+A security gateway is required for Azure - dynatrace integration.
