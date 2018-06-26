@@ -117,3 +117,7 @@ Host groups can be changed only by redeploying the agent
 Host CPU usage - fixed thresholds for CPU, memory, Availability
 Processes - baselining for response time, failure rate, cpu/request
 
+Service specific anamoly settings can be set.
+
+For custom alerts, there will be no correlation (RCA for problem) provided by DT.
+
