@@ -89,7 +89,31 @@ Full stack - bosh addon will add the agent on CF which will in turn inject itsel
 Azure setup:
 Setting up Paas agent on Azure: DT portal > Azure > follow the instructions. This will not inject itself into the vms
 
-Setting up Dynatrace agent in the Azure vms: Generate a token for an environment, go to azure and this app setting. and download and install dt extension. Good to go.
+Setting up Dynatrace agent in the Azure vms: Generate a token for an environment on dynatrace, go to azure and this app setting of the webapp. and download and install dt extension. Good to go.
+https://www.dynatrace.com/support/help/shortlink/azure
+https://www.dynatrace.com/support/help/shortlink/azure-vm
+
 Doesnt collect cpu level data as this is not a full stack agent.
 These agents are disconnected and cannot see eachother.
 A security gateway is required for Azure - dynatrace integration.
+
+
+Tagging:
+Values : optional - when setting it up on dt portal, a regex expression can be used after /.
+example: Optional tag value: {ProcessGroup:CommandLineArgs/dynatrace-[*]}
+
+Tags need to have a particular scope in the condition. There can be overtagging if both hosts and services are to be tagged according to your rule. 
+If service 1 runs in both Host a and b, and the rule is to tag the service that run on hosts that contain name "manager", then only that should be selected. IF hosts options are also selected then both Host A and B will be tagged as the service exists in both A and B and the tag gets propgated to the other node even though it doesnt contain the name manager.
+
+Tagging processGroups with Env variables would require app restart.
+
+Custom added properties get fetched into the tag placeholders
+
+Custom props need to be added before starting the app.Else restart app.
+
+Host groups can only be configured during installation of oneAgent. Cannot be done later as it breaks the Process Groups.
+Host groups can be changed only by redeploying the agent
+
+Host CPU usage - fixed thresholds for CPU, memory, Availability
+Processes - baselining for response time, failure rate, cpu/request
+
