@@ -77,5 +77,19 @@ Services: logical unit / endpoint that waits for methods to be called and return
 Day 2:
 
 Processes: Only important (deep injectable ones) are shown in the preview. More can be found in All processes of hosts view.
-Process group: Group of processes that run the same code accross hosts, Cannot change with deployment. Used to configure all of the processes at once.
+Process group: Group of processes that run the same code across hosts, Cannot change with deployment. Used to configure all of the processes at once.
 
+DB full monitoring:
+Settings > monitor technologies > configure DB type
+
+Paas agents - the agent is defined in the buildpack to monitor the app deployed on CF.
+Full stack - bosh addon will add the agent on CF which will in turn inject itself into all the containers. No buildpack integration required. to be installed as root.
+
+
+Azure setup:
+Setting up Paas agent on Azure: Azure > follow the instructions
+
+Setting up Dynatrace agent in the Azure vms: Generate a token for an environment, go to azure and this app setting. and download and install dt extension. Good to go.
+Doesnt collect cpu level data as this is not a full stack agent.
+
+These agents are disconnected and cannot see eachother.
