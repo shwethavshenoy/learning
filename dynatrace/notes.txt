@@ -103,7 +103,7 @@ Values : optional - when setting it up on dt portal, a regex expression can be u
 example: Optional tag value: {ProcessGroup:CommandLineArgs/dynatrace-[*]}
 
 Tags need to have a particular scope in the condition. There can be overtagging if both hosts and services are to be tagged according to your rule. 
-If service 1 runs in both Host a and b, and the rule is to tag the service that run on hosts that contain name "manager", then only that should be selected. IF hosts options are also selected then both Host A and B will be tagged as the service exists in both A and B and the tag gets propgated to the other node even though it doesnt contain the name manager.
+Example: if a service is used by 2 hosts, mynode and nodemanager and the rule is to tag the service that run only on hosts that contain name "manager", then only that should be selected. IF hosts options are also selected then both Hosts will be tagged as the tag gets propagated to the other node even though it doesn't contain the name manager. This can be avoided by not checking on the hosts option.
 
 Tagging processGroups with Env variables would require app restart.
 
