@@ -120,4 +120,25 @@ Processes - baselining for response time, failure rate, cpu/request
 Service specific anamoly settings can be set.
 
 For custom alerts, there will be no correlation (RCA for problem) provided by DT.
+Management zones can be used to set filters for limiting the view to only certain criteria. Hybris uses it to separate Customer data. Customer filter seen on top.
 
+-----------------------------------------------------------------------------------------------------------------------------
+
+Day 3:
+Process group detection: Regroup the existing pgs with a different criteria.
+Custom process group detection: Some process groups dont get detected if the CPU consumption is less than 1%. Custom PG rules help in that case.
+
+PG detection is at startup cannot change runtime. So, restart it.
+Older data is still retained under old PG grouping.
+
+Restricting the PG to a particular type will take upto a couple mins for DT to detect the  process type. So, the new naming maynot be visible immediately. So, better not use it.
+
+Availability monitoring can be set up for process groups like 3 instances all the time. Hence, it is crucial to bucket the processes properly.
+PG naming: Can also be done via Environment variables set on the VM.
+DT_CLUSTER_ID: will be inherited by all of the Processes.
+DT_NODE_ID: node level setting.
+
+PG detection for Paas: Only via env variables
+Full stack: rules + env variables
+
+Custom service detection: Requires restart for instrumentation.
