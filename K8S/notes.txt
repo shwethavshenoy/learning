@@ -5,7 +5,8 @@ Cons: Good for small systems. Not Enterprise scale.
 
 
 Kubernetes: Containers + orchestration through service discovery
-from Google project: Borg - minimal version of Borg
+from Google project: Borg - minimal version of Borg.
+It is one of the projects hosted on CNCF. like etcd
 
 Equivalents to K8S: Docker Swarm, Mesoshphere
 Kubernetes Master : K8S config service: takes in the configuration / workload definition (yaml/json) via API / UI / kubectl
@@ -20,7 +21,7 @@ K8s Multi-node Cluster: prod env
 Google container engine - Google compute engine
 -----------------------------------------------------
 Terminology:
-node: host
+node: host or a vm
 container: unit of packaging
 pod: unit of deployment: homogenous containers. vms that bring up multiple containers and make them available as one. Containers that need to be together can be created as a pod.
 contains one processid, network namespace (*namespaces support multiple virtual clusters backed by a physical cluster)
@@ -30,29 +31,44 @@ Services: collection of pods exposed as an endpoint
 -----------------------------------------------------
 
 Kubernetes Master components: 
-API Server exposes a set of APIs for operations available
+API Server exposes a set of APIs for operations available. All administration requests get to API server.
 Scheduler: schedules pods across nodes that meets a particular criteria. 
-Controller: Co-ordination & health of cluster.
-etcd - lightweight, distributed key-value db. Stores cluster state.
+Controller manager: Co-ordination & health of cluster.
+etcd - lightweight, distributed key-value db. Stores cluster state. Can also be deployed separetly and then connected to master.
 
 kubectl - CLI that consumes APIs from API Server. - Go lang based
 Kubernetes dashboard also uses the same API Server. All requests pass through this
 
 Kubernetes Master talks to nodes. 
-k8S master doesn't host any pods
+k8S master doesn't host any pods. 
 -----------------------------------------------------
 K8S Nodes / slave /Minions
 Main components:
 
 Contain kubeproxy - maintains network config. Manipulates ip tables on each host for pod to pod, node to node comm.
+
 kubelet - agent that talks to API (master). reports health and state
-docker - engine that creates containers
+
+Container Runtime - to run and maintain container's runtime
+
+kubelet talks to the container runtime using container runtime Interface (CRI). It consists of protobuf, gRPC (Client and server APIs).  
+The CRI shim (gRPC server) implements 2 services: ImageService (for image related ops) and runtime service (for container and pod related ops)
+
+Examples of CRI shims: dockershim, cri-containerdshim, CRI-O (for Open Container Initiative compatible runtimes)
+
+docker - platform that creates containers. runtime - containerd
 
 kubelet + docker = supervisord
 
 fluentd - log management for central logging
 
 Addons: DNS management, UI - help dev
+
+Kubernetes implements Container Network Interface (CNI) to assign each pod a unique IP address. (IP assignment offloading happens at the CNI, which then forwards the request to one of the underlying configured plugins like Bridge, IPvlan to get the IP. Then it forwards it back to the requested container runtime.
+
+Containers within in the same pod share the network namespace.
+
+For inter pod communication (hosted on different nodes), there should be no Network addresss Translation. This can be achieved by GKE or using software that defines networking like Flannel, Weave, Calico etc.
 
 -----------------------------------------------------
 Starting minikube:
