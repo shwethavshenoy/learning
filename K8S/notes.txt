@@ -194,7 +194,7 @@ kubectl describe svc <name>
 prints the info on the service like the clusterIP, namespace, labels, publish type, endpoints etc.
 -----------------------------------------------------
 kubectl proxy
-starts to serve a webapp on a url upon hitting which a list of APIs are returned.
+kubectl authenticates with the API Server and makes dashboard available on port 8001.
 -----------------------------------------------------
 heapster - container essential for kubernetes master. Scheduling is disabled on K8S master node as itdoesnt host containers.
 -----------------------------------------------------
