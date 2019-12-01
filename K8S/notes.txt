@@ -39,8 +39,8 @@ Services: collection of pods exposed as an endpoint
 Kubernetes Master components: 
 API Server exposes a set of APIs for operations available. All administration requests get to API server.
 Scheduler: schedules pods across nodes that meets a particular criteria. 
-Controller manager: Co-ordination & health of cluster.
-etcd - lightweight, distributed key-value db. Stores cluster state. Can also be deployed separetly and then connected to master.
+Controller manager: Co-ordination & health of cluster. 2 types: kube controller manager - for k8s objects  and cloud-controller manager for interaction with cloud infra, external storage
+etcd - lightweight, distributed key-value db. Stores cluster state. Can also be deployed separetly and then connected to master. Data is never updated. New rows added. Old data compacted to minize use of storage
 
 kubectl - CLI that consumes APIs from API Server. - Go lang based
 Kubernetes dashboard also uses the same API Server. All requests pass through this
