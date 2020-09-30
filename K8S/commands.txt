@@ -1,0 +1,25 @@
+Communicating with API server via curl: 
+1. Fetch bearer token: 
+$ TOKEN=$(kubectl describe secret -n kube-system $(kubectl get secrets -n kube-system | grep default | cut -f1 -d ' ') | grep -E '^token' | cut -f2 -d':' | tr -d '\t' | tr -d " ")
+
+2. Get APIserver endpoint
+$APISERVER=$(kubectl config view | grep https | cut -f 2- -d ":" | tr -d " ")
+
+3. Send curl commands:
+curl $APISERVER --header "Authorization: Bearer $TOKEN" --insecure
+{
+ "paths": [
+   "/api",
+   "/api/v1",
+   "/apis",
+   "/apis/apps",
+   "/logs",
+   "/metrics",
+   "/openapi/v2",
+   "/version"
+ ]
+}
+
+Alternatively, the certs from kubeconfig file can be used as well.
+curl $APISERVER --cert encoded-cert --key encoded-key --cacert encoded-ca
+
